@@ -51,8 +51,11 @@ const horarios = [{
 //Elementos del DOM
 const inputMailLogin = document.getElementById('emailLogin'),
     inputPassLogin = document.getElementById('passwordLogin'),
+    inputnombreUser =document.getElementById ('nombreUsuario'),
     checkRecordar = document.getElementById('recordarme'),
     btnLogin = document.getElementById('login'),
+    btnRegistro = document.getElementById ('btnModalRegistro'),
+    contDispo = document.getElementById('tarjetas'),
     modalEl = document.getElementById('modalLogin'),
     modal = new bootstrap.Modal(modalEl),
     botonDispo = document.getElementById('dispo'),
@@ -73,6 +76,31 @@ function validarUsuario(usuariosBD, user, pass) {
             }
         }
  }
+
+// La funcion registración por el momento es por prompt, no logro que se genere por modal sin error //
+function registracion(){
+        let nombre= prompt ("Ingrese su nombre")
+        let email= prompt ("Ingrese su email")
+        let password= prompt ("Ingrese su password")
+
+        const usuario = new Usuario(nombre, email, password );
+    usuarios.push(usuario);
+    usuario.asignarId(usuarios);
+    console.log(usuarios);    
+    }
+
+ /*function usuarioRegistrado(usuariosBD, user) {
+    let encontrado = usuariosBD.find((usuariosBD) => usuariosBD.email == user);
+    console.log(encontrado)
+    console.log(typeof encontrado)
+        if (typeof encontrado === 'undefined') {
+        return false;
+    } else {
+         
+            return encontrado;
+        }
+    }*/
+
 
  //Guardo el logueo en el storage.
 function guardarDatos(usuarioBD, storage) {
@@ -96,18 +124,8 @@ function recuperarUsuario(storage) {
     return JSON.parse(storage.getItem('usuario'));
 }
 
-// Funcion que registra los datos del cliente nuevo y lo almacena en el array Usuarios
-function registracion(){
-        let nombre= prompt ("Ingrese su nombre")
-        let email= prompt ("Ingrese su email")
-        let password= prompt ("Ingrese su password")
 
-        const usuario = new Usuario(nombre, email, password );
-    usuarios.push(usuario);
-    usuario.asignarId(usuarios);
-    console.log(usuarios);
-    
-  }
+
 
 //Cambio el DOM para mostrar el nombre del usuario logueado, usando los datos del storage
 function saludar(usuario) {
@@ -123,17 +141,17 @@ function presentarInfo(array, clase) {
 
 //Funciona para mostrar los horarios de agenda
 function mostrarHorarios(array) {
-    botonDispo.innerHTML = '';
+    contDispo.innerHTML = '';
     array.forEach(element => {
         let html = `<div class="card cardHorario" id="dispo${element.dia}">
                 <h3 class="card-header" id="nombreMascota">Día: ${element.dia}</h3>
                 <div class="card-body">
-                    <p class="card-text" id="horarioDia">Dia: ${element.dia}</p>
                     <p class="card-text" id="horarioTurno1">Horario: ${element.turno1} Hs.</p>
                     <p class="card-text" id="horarioTurno2">Horario: ${element.turno2} Hs.</p>
+                    <button id="btnAgendar" class="btn btn-outline-success me-2" type="button">Agendar</button>
                 </div>
             </div>`;
-            botonDispo.innerHTML += html;
+            contDispo.innerHTML += html;
     });
 }
 
@@ -182,9 +200,8 @@ btnSalir.addEventListener('click', () => {
 estaLogueado(recuperarUsuario(localStorage));
 
 
-//registracion();
-
-             
+btnRegistro.addEventListener('click', () => { registracion () });
+    
  
     
 
