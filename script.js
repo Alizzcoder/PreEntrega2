@@ -165,15 +165,14 @@ btnLogin.addEventListener('click', (e) => {
             }
             modal.hide();
             //Muestro la info para usuarios logueados
-            //mostrarInfoMascota(mascotas);
             presentarInfo(elementosToggleables, 'd-none');
         }
     }
 });
 
-//botonDispo.addEventListener('click', () => {
-  //      mostrarHorarios(horarios);
-    //});
+botonDispo.addEventListener('click', () => {
+     mostrarHorarios(horarios);
+    });
 
 btnSalir.addEventListener('click', () => {
     borrarDatos();
