@@ -146,8 +146,8 @@ function mostrarHorarios(array) {
         let html = `<div class="card cardHorario" id="dispo${element.dia}">
                 <h3 class="card-header" id="nombreMascota">Día: ${element.dia}</h3>
                 <div class="card-body">
-                    <p class="card-text" id="horarioTurno1">Horario: ${element.turno1} Hs.</p>
-                    <p class="card-text" id="horarioTurno2">Horario: ${element.turno2} Hs.</p>
+                    <p class="card-text" id="horarioTurno1">Horario: ${element.turno1}.</p>
+                    <p class="card-text" id="horarioTurno2">Horario: ${element.turno2}.</p>
                     <button id="btnAgendar" class="btn btn-outline-success me-2" type="button">Agendar</button>
                 </div>
             </div>`;
